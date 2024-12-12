@@ -61,6 +61,9 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       } else if (request.url().includes('sign-out')){
         console.log('aborted logout');
          request.abort();
+      }else if (request.url().includes('refresh_id_token')){
+        console.log('aborted token');
+         request.abort();
       }else if (request.url().includes('preview.mp3')){
          request.continue();
       } else if (request.url().includes('analytics.google.com')){
