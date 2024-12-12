@@ -118,6 +118,7 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
     const text = await page.evaluate(() => {
       return document.querySelector('.woNBXVXX').innerText;
     });
+    
     console.log('Extracted Text:', text);
     await page.keyboard.press('Escape');
     await page.keyboard.press('Escape');
