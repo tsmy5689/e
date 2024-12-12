@@ -55,7 +55,8 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       if (['image', 'media'].includes(request.resourceType())) {
         request.abort();
       } else if (request.url().includes('sign-out?background=true')){
-         request.continue();
+        console.log('aborted logout');
+         request.abort();
       }else if (request.url().includes('preview.mp3')){
          request.continue();
       } else if (request.url().includes('analytics.google.com')){
@@ -103,10 +104,10 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       console.log('"Accept all" button not found, continuing');
     }
 
-    await page.waitForSelector('.woNBXVXX');
-    const text = await page.evaluate(() => {
-      return document.querySelector('.woNBXVXX').innerText;
-    });
+    // await page.waitForSelector('.woNBXVXX');
+    // const text = await page.evaluate(() => {
+    //   return document.querySelector('.woNBXVXX').innerText;
+    // });
     // console.log('Extracted Text:', text);
     await page.keyboard.press('Escape');
     await page.keyboard.press('Escape');
