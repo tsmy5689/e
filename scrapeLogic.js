@@ -51,7 +51,11 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
     
     let intercepted = false; // Define intercepted variable
 
+
+    
     page.on('request', request => {
+         const requestUrl = request.url();
+      console.log(`Intercepted request: ${requestUrl}`);
       if (['image', 'media'].includes(request.resourceType())) {
         request.abort();
       } else if (request.url().includes('sign-out')){
@@ -84,15 +88,6 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
 
     console.log('Page loaded2');
     await page.goto(url);
-    await page.setRequestInterception(true);
-    page.on('request', request => {
-      if (request.url().includes('sign-out')){
-        console.log('aborted logout2');
-         request.abort();
-      }
-    });
-
-
     
     console.log('Page loaded');
 
