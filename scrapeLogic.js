@@ -54,7 +54,9 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
     page.on('request', request => {
       if (['image', 'media'].includes(request.resourceType())) {
         request.abort();
-      } else if (request.url().includes('preview.mp3')){
+      } else if (request.url().includes('sign-out?background=true')){
+         request.continue();
+      }else if (request.url().includes('preview.mp3')){
          request.continue();
       } else if (request.url().includes('analytics.google.com')){
          request.continue();
