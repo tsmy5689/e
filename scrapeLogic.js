@@ -76,7 +76,13 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
         request.continue();
       }
     });
-
+  // Capture page navigations to prevent sign-out redirection
+    page.on('framenavigated', frame => {
+      if (frame.url().includes('sign-out')) {
+        console.log('Blocked navigation to sign-out URL');
+        frame.stop(); // Stop the frame from navigating
+      }
+    });
     console.log('Page loaded1');
     // Set cookies
     await page.setCookie({
