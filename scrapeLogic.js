@@ -101,11 +101,11 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       console.log('"Accept all" button not found, continuing');
     }
 
-    await page.waitForSelector('.woNBXVXX');
-    const text = await page.evaluate(() => {
-      return document.querySelector('.woNBXVXX').innerText;
-    });
-    console.log('Extracted Text:', text);
+    // await page.waitForSelector('.woNBXVXX');
+    // const text = await page.evaluate(() => {
+    //   return document.querySelector('.woNBXVXX').innerText;
+    // });
+    // console.log('Extracted Text:', text);
     await page.keyboard.press('Escape');
     await page.keyboard.press('Escape');
     await page.click('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
