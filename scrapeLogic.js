@@ -83,7 +83,7 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
     
 
     console.log('Page loaded2');
-    await page.goto(url, { waitUntil: 'networkidle2' });
+    await page.goto(url);
     page.on('request', request => {
       if (request.url().includes('sign-out?background=true')){
         console.log('aborted logout');
