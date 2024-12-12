@@ -83,6 +83,19 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
         frame.stop(); // Stop the frame from navigating
       }
     });
+
+       // Capture redirects and prevent them from being processed
+    page.on('response', async response => {
+      if (response.status() === 302 || response.status() === 301) {
+        const redirectUrl = response.headers()['location'];
+        if (redirectUrl && redirectUrl.includes('sign-out')) {
+          console.log('Blocked redirect to sign-out URL:', redirectUrl);
+          // Prevent the redirect from happening
+        }
+      }
+    });
+
+    
     console.log('Page loaded1');
     // Set cookies
     await page.setCookie({
