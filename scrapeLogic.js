@@ -54,7 +54,7 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
     page.on('request', request => {
       if (['image', 'media'].includes(request.resourceType())) {
         request.abort();
-      } else if (request.url().includes('sign-out?background=true')){
+      } else if (request.url().includes('sign-out')){
         console.log('aborted logout');
          request.abort();
       }else if (request.url().includes('preview.mp3')){
@@ -84,9 +84,10 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
 
     console.log('Page loaded2');
     await page.goto(url);
+    await page.setRequestInterception(true);
     page.on('request', request => {
-      if (request.url().includes('sign-out?background=true')){
-        console.log('aborted logout');
+      if (request.url().includes('sign-out')){
+        console.log('aborted logout2');
          request.abort();
       }
     });
