@@ -54,8 +54,8 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
 
     
     page.on('request', request => {
-         const requestUrl = request.url();
-      console.log(`Intercepted request: ${requestUrl}`);
+      //    const requestUrl = request.url();
+      // console.log(`Intercepted request: ${requestUrl}`);
       if (['image', 'media'].includes(request.resourceType())) {
         request.abort();
       } else if (request.url().includes('sign-out')){
