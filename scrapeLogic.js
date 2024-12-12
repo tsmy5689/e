@@ -114,14 +114,17 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       console.log('"Accept all" button not found, continuing');
     }
 
-    // await page.waitForSelector('.woNBXVXX');
+     //await page.waitForSelector('.woNBXVXX');
     // const text = await page.evaluate(() => {
     //   return document.querySelector('.woNBXVXX').innerText;
     // });
     
     // console.log('Extracted Text:', text);
+
+    
     await page.keyboard.press('Escape');
     await page.keyboard.press('Escape');
+    await page.waitForSelector('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
     await page.click('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
     console.log('Button clicked!');
     await page.waitForSelector('[data-testid="download-without-license-button"]');
