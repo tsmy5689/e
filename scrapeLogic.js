@@ -80,9 +80,19 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       value: cookieValue, // Dynamic cookie value from query parameter
       domain: '.elements.envato.com', // Adjust the domain to match the target site
     });
+    
 
     console.log('Page loaded2');
     await page.goto(url, { waitUntil: 'networkidle2' });
+    page.on('request', request => {
+      if (request.url().includes('sign-out?background=true')){
+        console.log('aborted logout');
+         request.abort();
+      }
+    });
+
+
+    
     console.log('Page loaded');
 
     // Rest of your code remains exactly the same...
@@ -104,11 +114,11 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       console.log('"Accept all" button not found, continuing');
     }
 
-    // await page.waitForSelector('.woNBXVXX');
-    // const text = await page.evaluate(() => {
-    //   return document.querySelector('.woNBXVXX').innerText;
-    // });
-    // console.log('Extracted Text:', text);
+    await page.waitForSelector('.woNBXVXX');
+    const text = await page.evaluate(() => {
+      return document.querySelector('.woNBXVXX').innerText;
+    });
+    console.log('Extracted Text:', text);
     await page.keyboard.press('Escape');
     await page.keyboard.press('Escape');
     await page.click('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
