@@ -95,4 +95,4 @@ const go = async (res, url, user,pass, proxy) => {
   }
 };
 
-module.exports = { scrapeLogic };
+module.exports = { go };
