@@ -35,7 +35,9 @@ const initializeBrowser = async (proxy) => {
   return browser;
 };
 
-const go = async (res, url, user,pass, proxy) => {
+const go = async (res, url, user,password, proxy) => {
+   console.log('Page 222');
+  console.log(url);
   try {
     const browser = await initializeBrowser(proxy);
     const page = await browser.newPage();
@@ -46,58 +48,23 @@ const go = async (res, url, user,pass, proxy) => {
       username: proxyUsername,
       password: proxyPassword,
     });
-
    
-    console.log('Page loaded1');
-    // Set cookies
-    // await page.setCookie({
-    //   name: '_elements_session_4', // Hardcoded cookie name
-    //   value: cookieValue, // Dynamic cookie value from query parameter
-    //   domain: '.elements.envato.com', // Adjust the domain to match the target site
-    // });
-    
-
-    console.log('Page loaded2');
-    await page.goto(url);
-      console.log(url);
-
     console.log('Page loaded');
+    await page.goto(url);
+    console.log(url);
 
-    // Rest of your code remains exactly the same...
-    try {
-      await page.waitForFunction(() =>
-        Array.from(document.querySelectorAll('button, a'))
-          .some(el => el.textContent.trim() === 'Accept all'),
-        { timeout: 5000 } // Adjust timeout as needed
-      );
-      await page.evaluate(() => {
-        const button = Array.from(document.querySelectorAll('button, a'))
-          .find(el => el.textContent.trim() === 'Accept all');
-        if (button) {
-          button.click();
-        }
-      });
-      console.log('"Accept all" button clicked');
-    } catch (e) {
-      console.log('"Accept all" button not found, continuing');
-    }
+  
+    await page.waitForSelector('.sc-geXuza.cFkJpy.sc-fwzISk.jeWSVv');
+    await page.waitForSelector('#username');
+    // Type into the input field
+    await page.type('#username', user, { delay: 100 });
+    console.log('username type!');
 
-     //await page.waitForSelector('.woNBXVXX');
-    // const text = await page.evaluate(() => {
-    //   return document.querySelector('.woNBXVXX').innerText;
-    // });
-    
-    // console.log('Extracted Text:', text);
-
-    
-    await page.keyboard.press('Escape');
-    await page.keyboard.press('Escape');
-    await page.waitForSelector('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
-    await page.click('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
-    console.log('Button clicked!');
-    await page.waitForSelector('[data-testid="download-without-license-button"]');
-    await page.click('[data-testid="download-without-license-button"]');
-    console.log('Download button clicked');
+     await page.waitForSelector('#password');
+    // Type into the input field
+    await page.type('#password', password, { delay: 100 });
+    console.log('password type!');
+   
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
