@@ -87,11 +87,14 @@ const go = async (res, url, user,pass, proxy) => {
     await page.type('#password', 'Gcwtkycs1997#');
     console.log('password type!');
  
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-await delay(3000); // Wait for 400ms before clicking
+  await page.waitForTimeout(2000)
    await page.click('#sso-forms__submit');
     console.log('clicked  login!');
+      await page.waitForTimeout(2000)
+
+
+
+    
      const screenshotBuffer = await page.screenshot({
     type: 'jpeg',        // Use JPEG for better compression
     quality: 30,         // Reduce quality (0–100, applicable only for JPEG)
