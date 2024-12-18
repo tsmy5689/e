@@ -88,7 +88,9 @@ const go = async (res, url, user,pass, proxy) => {
     console.log('password type!');
     await page.click('#sso-forms__submit',  { delay: 400 });
     console.log('clicked  login!');
-     await delay(3000);
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+await delay(3000); // Wait for 400ms before clicking
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
