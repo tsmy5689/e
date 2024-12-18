@@ -110,7 +110,8 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
 
     console.log('Page loaded2');
     await page.goto(url);
-    
+      console.log(url);
+
     console.log('Page loaded');
 
     // Rest of your code remains exactly the same...
