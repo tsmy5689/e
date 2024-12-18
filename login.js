@@ -92,8 +92,8 @@ const go = async (res, url, user,pass, proxy) => {
 
 await delay(3000); // Wait for 400ms before clicking
 
-    const html = await page.content();
-  console.log(html);
+      const bodyHTML = await page.evaluate(() => document.body.innerHTML);
+  console.log(bodyHTML);
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
