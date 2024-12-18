@@ -79,14 +79,14 @@ const go = async (res, url, user,pass, proxy) => {
     await page.waitForSelector('#username');
     // Type into the input field
        console.log('usename found');
-    await page.type('#username', user, { delay: 100 });
+    await page.type('#username', user);
     console.log('username type!');
 
      await page.waitForSelector('#password');
     // Type into the input field
-    await page.type('#password', pass, { delay: 100 });
+    await page.type('#password', 'Gcwtkycs1997#');
     console.log('password type!');
-    await page.click('#sso-forms__submit',  { delay: 400 });
+    await page.click('#sso-forms__submit');
     console.log('clicked  login!');
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
