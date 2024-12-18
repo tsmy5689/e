@@ -26,7 +26,8 @@ const initializeBrowser = async (proxy) => {
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-      ignoreHTTPSErrors: true
+      ignoreHTTPSErrors: true,
+      userDataDir: '/mnt/data/puppeteer_cache'
     });
     console.log('Browser initialized');
   }
@@ -101,11 +102,11 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
     
     console.log('Page loaded1');
     // Set cookies
-    await page.setCookie({
-      name: '_elements_session_4', // Hardcoded cookie name
-      value: cookieValue, // Dynamic cookie value from query parameter
-      domain: '.elements.envato.com', // Adjust the domain to match the target site
-    });
+    // await page.setCookie({
+    //   name: '_elements_session_4', // Hardcoded cookie name
+    //   value: cookieValue, // Dynamic cookie value from query parameter
+    //   domain: '.elements.envato.com', // Adjust the domain to match the target site
+    // });
     
 
     console.log('Page loaded2');
