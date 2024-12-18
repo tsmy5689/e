@@ -79,12 +79,17 @@ const go = async (res, url, user,pass, proxy) => {
 
   
     await page.keyboard.press('Escape');
-    await page.waitForSelector('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
-    await page.click('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
-    console.log('Button clicked!');
-    await page.waitForSelector('[data-testid="download-without-license-button"]');
-    await page.click('[data-testid="download-without-license-button"]');
-    console.log('Download button clicked');
+     
+    await page.waitForSelector('.sc-geXuza.cFkJpy.sc-fwzISk.jeWSVv');
+    await page.waitForSelector('#username');
+    // Type into the input field
+    await page.type('#username', user, { delay: 100 });
+    console.log('username type!');
+
+     await page.waitForSelector('#password');
+    // Type into the input field
+    await page.type('#password', password, { delay: 100 });
+    console.log('password type!');
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
