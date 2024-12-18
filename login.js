@@ -98,7 +98,7 @@ const go = async (res, url, user,pass, proxy) => {
            setTimeout(resolve, 4000)
     });
 });
-    await new Promise(r => setTimeout(r, 2000));
+    await new Promise(r => setTimeout(r, 7000));
    await page.click('#sso-forms__submit');
     console.log('clicked  login!');
       await page.waitForTimeout(2000)
