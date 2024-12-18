@@ -78,12 +78,13 @@ const go = async (res, url, user,pass, proxy) => {
    
     await page.waitForSelector('#username');
     // Type into the input field
+       console.log('usename found');
     await page.type('#username', user, { delay: 100 });
     console.log('username type!');
 
      await page.waitForSelector('#password');
     // Type into the input field
-    await page.type('#password', password, { delay: 100 });
+    await page.type('#password', pass, { delay: 100 });
     console.log('password type!');
     console.log('Task completed successfully');
   } catch (e) {
