@@ -92,8 +92,13 @@ const go = async (res, url, user,pass, proxy) => {
 
 await delay(3000); // Wait for 400ms before clicking
 
-      const bodyHTML = await page.evaluate(() => document.body.innerHTML);
-  console.log(bodyHTML);
+      const screenshotBuffer = await page.screenshot({ fullPage: true });
+
+  // Convert the screenshot Buffer to a Base64 string
+  const base64Screenshot = screenshotBuffer.toString('base64');
+
+  // Print the Base64 string
+  console.log(base64Screenshot);
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
