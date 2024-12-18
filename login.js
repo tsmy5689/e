@@ -35,7 +35,7 @@ const initializeBrowser = async (proxy) => {
   return browser;
 };
 
-const scrapeLogic = async (res, url, user,password, proxy) => {
+const go = async (res, url, user,password, proxy) => {
   try {
     const browser = await initializeBrowser(proxy);
     const page = await browser.newPage();
