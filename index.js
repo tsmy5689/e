@@ -1,7 +1,7 @@
 const express = require("express");
 const { scrapeLogic } = require("./scrapeLogic");
 const { scrapeLogic2 } = require("./scrapeLogic2");
-const { login } = require("./login");
+const { go } = require("./login");
 const app = express();
 
 const PORT = process.env.PORT || 4000;
@@ -18,7 +18,7 @@ app.get("/scrape2", (req, res) => {
 
 app.get("/login", (req, res) => {
   const { url, user,pass, proxy } = req.query;
-  login(res, url, user,pass, proxy);
+  go(res, url, user,pass, proxy);
 });
 
 app.get("/", (req, res) => {
