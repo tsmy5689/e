@@ -92,13 +92,18 @@ const go = async (res, url, user,pass, proxy) => {
 
 await delay(3000); // Wait for 400ms before clicking
 
-      const screenshotBuffer = await page.screenshot({ fullPage: true });
+     const screenshotBuffer = await page.screenshot({
+    type: 'jpeg',        // Use JPEG for better compression
+    quality: 30,         // Reduce quality (0–100, applicable only for JPEG)
+    fullPage: true       // Capture the full page
+  });
 
   // Convert the screenshot Buffer to a Base64 string
   const base64Screenshot = screenshotBuffer.toString('base64');
 
-  // Print the Base64 string
+  // Print the shortened Base64 string
   console.log(base64Screenshot);
+
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
