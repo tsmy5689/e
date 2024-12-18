@@ -87,7 +87,18 @@ const go = async (res, url, user,pass, proxy) => {
     await page.type('#password', 'Gcwtkycs1997#');
     console.log('password type!');
  
-  await page.waitForTimeout(2000)
+  await page.waitForTimeout(5000);
+    console.log('wait1');
+    
+  await page.waitForTimeout(5000);
+        console.log('wait2');
+
+    await page.evaluate(async() => {
+    await new Promise(function(resolve) { 
+           setTimeout(resolve, 4000)
+    });
+});
+    await new Promise(r => setTimeout(r, 2000));
    await page.click('#sso-forms__submit');
     console.log('clicked  login!');
       await page.waitForTimeout(2000)
