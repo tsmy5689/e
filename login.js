@@ -73,4 +73,4 @@ const scrapeLogic = async (res, url, user,password, proxy) => {
   }
 };
 
-module.exports = { scrapeLogic };
+module.exports = { go };
