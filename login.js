@@ -91,6 +91,9 @@ const go = async (res, url, user,pass, proxy) => {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 await delay(3000); // Wait for 400ms before clicking
+
+    const html = await page.content();
+  console.log(html);
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
