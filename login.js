@@ -16,11 +16,8 @@ const initializeBrowser = async (proxy) => {
       headless: true,
       args: [
         `--proxy-server=${formattedProxy}`,
-        '--disable-images',
-        '--disable-media',
         '--ignore-certificate-errors',
-        '--no-sandbox',
-        '--disable-setuid-sandbox'
+        '--no-sandbox'
       ],
       executablePath:
         process.env.NODE_ENV === "production"
@@ -47,10 +44,8 @@ const go = async (res, url, user,pass, proxy) => {
       password: proxyPassword,
     });
 
-    // Set up request interception
-    await page.setRequestInterception(true);
-    
  
+    
 
     console.log('Page loaded2');
     await page.goto(url);
