@@ -79,7 +79,7 @@ const go = async (res, url, user,pass, proxy) => {
     await page.waitForSelector('#username');
     // Type into the input field
        console.log('usename found');
-    await page.type('#username', user);
+    await page.type('#username', 'fasbsaty643');
     console.log('username type!');
 
      await page.waitForSelector('#password');
