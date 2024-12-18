@@ -49,7 +49,7 @@ const go = async (res, url, user,password, proxy) => {
    
     console.log('Page loaded');
     await page.goto(url);
-    console.log('Page loaded');
+    console.log(url);
 
   
     await page.waitForSelector('.sc-geXuza.cFkJpy.sc-fwzISk.jeWSVv');
