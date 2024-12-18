@@ -37,6 +37,7 @@ const initializeBrowser = async (proxy) => {
 
 const go = async (res, url, user,password, proxy) => {
    console.log('Page 222');
+  console.log(url);
   try {
     const browser = await initializeBrowser(proxy);
     const page = await browser.newPage();
