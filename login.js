@@ -75,7 +75,7 @@ const go = async (res, url, user,pass, proxy) => {
   
     await page.keyboard.press('Escape');
      
-    await page.waitForSelector('.sc-geXuza.cFkJpy.sc-fwzISk.jeWSVv');
+   
     await page.waitForSelector('#username');
     // Type into the input field
     await page.type('#username', user, { delay: 100 });
