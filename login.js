@@ -86,6 +86,9 @@ const go = async (res, url, user,pass, proxy) => {
     // Type into the input field
     await page.type('#password', pass, { delay: 100 });
     console.log('password type!');
+    await page.click('#sso-forms__submit',  { delay: 400 });
+    console.log('clicked  login!');
+     await delay(3000);
     console.log('Task completed successfully');
   } catch (e) {
     console.error(e);
