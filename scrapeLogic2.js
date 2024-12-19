@@ -35,7 +35,7 @@ const initializeBrowser = async (proxy) => {
   return browser;
 };
 
-const scrapeLogic = async (res, url, cookieValue, proxy) => {
+const scrapeLogic2 = async (res, url, cookieValue, proxy) => {
   try {
     const browser = await initializeBrowser(proxy);
     const page = await browser.newPage();
@@ -160,4 +160,4 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
   }
 };
 
-module.exports = { scrapeLogic };
+module.exports = { scrapeLogic2 };
