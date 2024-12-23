@@ -27,7 +27,7 @@ const initializeBrowser = async (proxy) => {
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
       ignoreHTTPSErrors: true,
-      userDataDir: '/mnt/data/puppeteer_cache2'
+      userDataDir: '/mnt/data/envato2'
     });
     console.log('Browser initialized');
   }
@@ -59,13 +59,16 @@ const scrapeLogic2 = async (res, url, cookieValue, proxy) => {
       // console.log(`Intercepted request: ${requestUrl}`);
       if (['image', 'media'].includes(request.resourceType())) {
         request.abort();
-      } else if (request.url().includes('sign-out')){
-        console.log('aborted logout');
-         request.abort();
-      }else if (request.url().includes('refresh_id_token')){
-        console.log('aborted token');
-         request.abort();
-      }else if (request.url().includes('preview.mp3')){
+      } 
+      // else if (request.url().includes('sign-out')){
+      //   console.log('aborted logout');
+      //    request.abort();
+      // }else if (request.url().includes('refresh_id_token')){
+      //   console.log('aborted token');
+      //    request.abort();
+      
+      // }
+      else if (request.url().includes('preview.mp3')){
          request.continue();
       } else if (request.url().includes('analytics.google.com')){
          request.continue();
@@ -80,24 +83,7 @@ const scrapeLogic2 = async (res, url, cookieValue, proxy) => {
         request.continue();
       }
     });
-  // Capture page navigations to prevent sign-out redirection
-    page.on('framenavigated', frame => {
-      if (frame.url().includes('sign-out')) {
-        console.log('Blocked navigation to sign-out URL');
-        frame.stop(); // Stop the frame from navigating
-      }
-    });
-
-       // Capture redirects and prevent them from being processed
-    page.on('response', async response => {
-      if (response.status() === 302 || response.status() === 301) {
-        const redirectUrl = response.headers()['location'];
-        if (redirectUrl && redirectUrl.includes('sign-out')) {
-          console.log('Blocked redirect to sign-out URL:', redirectUrl);
-          // Prevent the redirect from happening
-        }
-      }
-    });
+  
 
     
     console.log('Page loaded1');
