@@ -24,7 +24,7 @@ const initializeBrowser = async (proxy) => {
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
       ignoreHTTPSErrors: true,
-      userDataDir: '/mnt/data/puppeteer_cache2'
+      userDataDir: '/mnt/data/envato2'
     });
     console.log('Browser initialized');
   }
@@ -79,7 +79,7 @@ const go2 = async (res, url, user,pass, proxy) => {
     await page.waitForSelector('#username');
     // Type into the input field
        console.log('usename found');
-    await page.type('#username', 'masbyer4234');
+    await page.type('#username', 'dmdmtvanime');
     console.log('username type!');
 
      await page.waitForSelector('#password');
@@ -102,7 +102,7 @@ const go2 = async (res, url, user,pass, proxy) => {
    await page.click('#sso-forms__submit');
     console.log('clicked  login!');
       await page.waitForTimeout(2000)
-
+    await page.waitForTimeout(2000)
 
 
     
