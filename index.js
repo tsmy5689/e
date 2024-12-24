@@ -1,6 +1,7 @@
 const express = require("express");
 const { scrapeLogic } = require("./scrapeLogic");
 const { scrapeLogic2 } = require("./scrapeLogic2");
+const { scrapeLogic3 } = require("./scrapeLogic3");
 const { go } = require("./login");
 const { go2 } = require("./login2");
 const { go3 } = require("./login3");
