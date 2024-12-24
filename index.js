@@ -3,6 +3,7 @@ const { scrapeLogic } = require("./scrapeLogic");
 const { scrapeLogic2 } = require("./scrapeLogic2");
 const { go } = require("./login");
 const { go2 } = require("./login2");
+const { go3 } = require("./login3");
 const app = express();
 
 const PORT = process.env.PORT || 4000;
