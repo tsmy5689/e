@@ -130,6 +130,17 @@ const scrapeLogic2 = async (res, url, cookieValue, proxy) => {
     
     await page.keyboard.press('Escape');
     await page.keyboard.press('Escape');
+         const screenshotBuffer = await page.screenshot({
+    type: 'jpeg',        // Use JPEG for better compression
+    quality: 30,         // Reduce quality (0–100, applicable only for JPEG)
+    fullPage: true       // Capture the full page
+  });
+
+  // Convert the screenshot Buffer to a Base64 string
+  const base64Screenshot = screenshotBuffer.toString('base64');
+
+  // Print the shortened Base64 string
+  console.log(base64Screenshot);
     await page.waitForSelector('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
     await page.click('.ncWzoxCr.WjwUaJcT.NWg5MVVe.METNYJBx');
     console.log('Button clicked!');
