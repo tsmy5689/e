@@ -24,7 +24,7 @@ const initializeBrowser = async (proxy) => {
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
       ignoreHTTPSErrors: true,
-      userDataDir: '/mnt/data/envato2'
+      userDataDir: '/mnt/data/envato22'
     });
     console.log('Browser initialized');
   }
@@ -79,7 +79,7 @@ const go2 = async (res, url, user,pass, proxy) => {
     await page.waitForSelector('#username');
     // Type into the input field
        console.log('usename found');
-    await page.type('#username', 'dmdmtvanime');
+    await page.type('#username', 'keysa52');
     console.log('username type!');
 
      await page.waitForSelector('#password');
