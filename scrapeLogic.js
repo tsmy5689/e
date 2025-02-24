@@ -70,6 +70,8 @@ const scrapeLogic = async (res, url, cookieValue, proxy) => {
       // }
       else if (request.url().includes('preview.mp3')){
          request.continue();
+      }else if (request.url().includes('waveform.envatousercontent.com')){
+         request.continue();
       } else if (request.url().includes('analytics.google.com')){
          request.continue();
       }else if (request.url().includes('envatousercontent.com')) {
