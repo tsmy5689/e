@@ -72,6 +72,8 @@ const scrapeLogic2 = async (res, url, cookieValue, proxy) => {
          request.continue();
       } else if (request.url().includes('analytics.google.com')){
          request.continue();
+      }else if (request.url().includes('waveform.envatousercontent.com')){
+         request.continue();
       }else if (request.url().includes('envatousercontent.com')) {
         intercepted = true; // Mark interception as done
         console.log('Intercepted request URL:', request.url());
