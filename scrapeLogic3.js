@@ -70,7 +70,9 @@ const scrapeLogic3 = async (res, url, cookieValue, proxy) => {
       // }
       else if (request.url().includes('preview.mp3')){
          request.continue();
-      } else if (request.url().includes('analytics.google.com')){
+      } else if (request.url().includes('waveform.envatousercontent.com')){
+         request.continue();
+      }else if (request.url().includes('analytics.google.com')){
          request.continue();
       }else if (request.url().includes('envatousercontent.com')) {
         intercepted = true; // Mark interception as done
