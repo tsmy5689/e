@@ -79,12 +79,12 @@ const go = async (res, url, user,pass, proxy) => {
     await page.waitForSelector('#username');
     // Type into the input field
        console.log('usename found');
-    await page.type('#username', 'myer5623');
+    await page.type('#username', 'xyhwkb826@proton.me');
     console.log('username type!');
 
      await page.waitForSelector('#password');
     // Type into the input field
-    await page.type('#password', 'gcwtkycs1997#');
+    await page.type('#password', 'Gcwtkycs1997#');
     console.log('password type!');
  
   await page.waitForTimeout(5000);
