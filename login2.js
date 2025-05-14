@@ -1,17 +1,10 @@
 const puppeteer = require("puppeteer");
 const puppeteer_extra = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const UserAgentPlugin = require('puppeteer-extra-plugin-user-agent');
 require("dotenv").config();
 
 // Apply stealth plugin to make puppeteer undetectable
 puppeteer_extra.use(StealthPlugin());
-
-// Add realistic user agent
-puppeteer_extra.use(UserAgentPlugin({
-  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-  platform: 'Win32'
-}));
 
 const proxyUsername = 'msnmmayl';
 const proxyPassword = '626he4yucyln';
@@ -95,7 +88,9 @@ const go2 = async (res, url, user, pass, proxy) => {
     const browser = await initializeBrowser(proxy);
     const page = await browser.newPage();
     
-    // Set a real user agent and viewport size
+    // Set a real user agent manually (since we don't have the plugin)
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36');
+    
     await page.setViewport({ 
       width: 1920, 
       height: 1080,
