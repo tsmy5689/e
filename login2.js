@@ -75,15 +75,15 @@ const go2 = async (res, url, user,pass, proxy) => {
   
     await page.keyboard.press('Escape');
 
-         const screenshotBuffer = await page.screenshot({
+         const screenshotBuffer0 = await page.screenshot({
     type: 'jpeg',        // Use JPEG for better compression
     quality: 25,         // Reduce quality (0–100, applicable only for JPEG)
     fullPage: true       // Capture the full page
   });
- const base64Screenshot = screenshotBuffer.toString('base64');
+ const base64Screenshot0 = screenshotBuffer0.toString('base64');
 
   // Print the shortened Base64 string
-  console.log(base64Screenshot);
+  console.log(base64Screenshot0);
     
    
     await page.waitForSelector('#username');
