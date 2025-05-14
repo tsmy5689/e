@@ -17,6 +17,6 @@
     "puppeteer-core": "^19.0.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
-    "puppeteer-extra-plugin-user-agent": "^2.4.1"
+   
   }
 }
