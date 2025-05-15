@@ -33,8 +33,6 @@ const initializeBrowser = async (proxy) => {
       args: [
         `--proxy-server=${formattedProxy}`,
        
-        '--ignore-certificate-errors',
-        '--no-sandbox',
         `--window-size=1920,1080`,
        
      
