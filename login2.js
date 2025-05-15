@@ -33,7 +33,8 @@ const initializeBrowser = async (proxy) => {
       args: [
         `--proxy-server=${formattedProxy}`,
        
-   
+        '--ignore-certificate-errors',
+        '--no-sandbox',
         `--window-size=1920,1080`,
        
      
@@ -43,7 +44,7 @@ const initializeBrowser = async (proxy) => {
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
       ignoreHTTPSErrors: true,
-      userDataDir: '/mnt/data/envato2222222two2'
+      userDataDir: '/mnt/data/envato2222222two22'
     });
     console.log('Browser initialized');
   }
