@@ -83,13 +83,9 @@ const initializeBrowser = async (proxy) => {
       args: [
         `--proxy-server=${formattedProxy}`,
         `--window-size=1920,1080`,
-        '--disable-blink-features=AutomationControlled', // Critical: Mask automation
-        '--disable-features=IsolateOrigins', 
-        '--disable-site-isolation-trials',
+   
         '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
+  
         '--disable-gpu',
         '--lang=en-US,en',
         '--no-first-run',
