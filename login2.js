@@ -75,7 +75,7 @@ const initializeBrowser = async (proxy) => {
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
       ignoreHTTPSErrors: true,
-      userDataDir: '/mnt/data/envato222'
+      userDataDir: '/mnt/data/ev2'
     });
     console.log('Browser initialized');
   }
