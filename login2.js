@@ -29,16 +29,15 @@ const initializeBrowser = async (proxy) => {
     const formattedProxy = `${proxyUrl.hostname}:${proxyUrl.port}`;
     
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       args: [
         `--proxy-server=${formattedProxy}`,
         '--ignore-certificate-errors',
         '--no-sandbox',
-        '--disable-web-security',
-        '--disable-features=IsolateOrigins,site-per-process',
+   
         `--window-size=1920,1080`,
-        '--disable-accelerated-2d-canvas',
-        '--disable-gpu'
+       
+     
       ],
       executablePath:
         process.env.NODE_ENV === "production"
