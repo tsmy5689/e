@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm ci
+RUN npm install puppeteer-extra puppeteer-extra-plugin-stealth
 COPY . .
 CMD [ "node", "index.js" ]
 
