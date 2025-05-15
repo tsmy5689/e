@@ -29,7 +29,7 @@ const initializeBrowser = async (proxy) => {
     const formattedProxy = `${proxyUrl.hostname}:${proxyUrl.port}`;
     
     browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
       args: [
         `--proxy-server=${formattedProxy}`,
         '--ignore-certificate-errors',
