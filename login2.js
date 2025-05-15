@@ -377,24 +377,24 @@ const go2 = async (res, url, user, pass, proxy) => {
     await page.keyboard.press('Escape');
     
     // Wait for login form with more human-like behavior
-    await page.waitForSelector('#username');
-    console.log('Username field found');
+    await page.waitForSelector('#password');
+    console.log('new pass field found');
     
     // Type like a human - with variable speed
-    await typeHumanLike(page, '#username', 'fsdg6342');
-    console.log('Username entered');
+   // await typeHumanLike(page, '#username', 'fsdg6342');
+    //console.log('Username entered');
     
     await page.waitForTimeout(getRandomDelay(300, 800));
     
     await page.waitForSelector('#password');
-    await typeHumanLike(page, '#password', 'Gcwtkycs1997#');
+    await typeHumanLike(page, '#password', 'GGcwtkycs1997#');
     console.log('Password entered');
     
     // Add a natural pause before clicking the login button
     await page.waitForTimeout(getRandomDelay(800, 1500));
     
     // Move mouse to button first (like a human would) and then click
-    const submitButton = await page.$('#sso-forms__submit');
+    const submitButton = await page.$('.sc-dHKmnV');
     const buttonBox = await submitButton.boundingBox();
     
     // Move mouse to a random position on the button
@@ -405,7 +405,7 @@ const go2 = async (res, url, user, pass, proxy) => {
     );
     
     await page.waitForTimeout(getRandomDelay(100, 300));
-    await page.click('#sso-forms__submit');
+    await page.click('.sc-dHKmnV');
     console.log('Login button clicked');
     
     // Wait for navigation after login
