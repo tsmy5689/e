@@ -6,7 +6,7 @@ const proxyUsername = 'msnmmayl';
 const proxyPassword = '626he4yucyln';
 
 // Browserless.io connection details
-const browserlessToken = process.env.BROWSERLESS_TOKEN || '2SJiFPoA1LWJf1efdb4c24535106e69a00f371f46e6ed5015'; // Use from .env file or fallback
+const browserlessToken = '2SJiFPoA1LWJf1efdb4c24535106e69a00f371f46e6ed5015'; // Use from .env file or fallback
 const browserlessEndpoint = `wss://production-sfo.browserless.io?token=${browserlessToken}&--proxy-server=http://45.114.15.164:6145`;
 
 // Singleton browser instance
