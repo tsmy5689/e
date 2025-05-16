@@ -65,6 +65,16 @@ const go3 = async (res, url, user, pass, proxy) => {
     }
   
     await page.keyboard.press('Escape');
+
+     const screenshotBuffer2 = await page.screenshot({
+      type: 'jpeg',
+      quality: 30,
+      fullPage: true
+    });
+    
+    // Convert screenshot to Base64
+    const base64Screenshot2 = screenshotBuffer2.toString('base64');
+    console.log(base64Screenshot2.substring(0, 100) + '...');
     
     // Login process
     await page.waitForSelector('#username');
