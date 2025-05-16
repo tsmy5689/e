@@ -1,34 +1,10 @@
-
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { executablePath } = require('puppeteer');
-const pluginEvasions = require('puppeteer-extra-plugin-stealth/evasions');
 require('dotenv').config();
 
-// Add the stealth plugin to puppeteer with enhanced configuration
+// Add the stealth plugin to puppeteer (comprehensive configuration)
 puppeteer.use(StealthPlugin());
-
-// Add extra fingerprinting evasion
-const extraEvasions = StealthPlugin({
-  enabledEvasions: new Set([
-    'chrome.app',
-    'chrome.csi',
-    'chrome.loadTimes',
-    'chrome.runtime',
-    'iframe.contentWindow', 
-    'media.codecs',
-    'navigator.hardwareConcurrency',
-    'navigator.languages',
-    'navigator.permissions',
-    'navigator.plugins',
-    'navigator.vendor',
-    'navigator.webdriver',
-    'sourceurl',
-    'webgl.vendor',
-    'window.outerdimensions'
-  ])
-});
-puppeteer.use(extraEvasions);
 
 const proxyUsername = 'msnmmayl';
 const proxyPassword = '626he4yucyln';
