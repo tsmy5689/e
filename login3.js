@@ -1,64 +1,56 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-core"); // Changed to puppeteer-core
 require("dotenv").config();
 
+// Proxy and authentication details
 const proxyUsername = 'msnmmayl';
 const proxyPassword = '626he4yucyln';
 
-let browser; // Singleton browser instance
+// Browserless.io connection details
+const browserlessToken = process.env.BROWSERLESS_TOKEN || '2SJiFPoA1LWJf1efdb4c24535106e69a00f371f46e6ed5015'; // Use from .env file or fallback
+const browserlessEndpoint = `wss://production-sfo.browserless.io?token=${browserlessToken}&--proxy-server=http://45.114.15.164:6145`;
 
-const initializeBrowser = async (proxy) => {
+// Singleton browser instance
+let browser;
+
+// Initialize browser by connecting to browserless.io instead of launching locally
+const initializeBrowser = async () => {
   if (!browser) {
-    // Parse and format proxy URL properly
-    const proxyUrl = new URL(proxy);
-    const formattedProxy = `${proxyUrl.hostname}:${proxyUrl.port}`;
-
-    browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        `--proxy-server=${formattedProxy}`,
-        '--ignore-certificate-errors',
-        '--no-sandbox'
-      ],
-      executablePath:
-        process.env.NODE_ENV === "production"
-          ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : puppeteer.executablePath(),
-      ignoreHTTPSErrors: true,
-      userDataDir: '/mnt/data/envato3333'
-    });
-    console.log('Browser initialized');
+    try {
+      browser = await puppeteer.connect({
+        browserWSEndpoint: browserlessEndpoint,
+      });
+      console.log('Connected to remote browser service');
+    } catch (error) {
+      console.error('Failed to connect to remote browser:', error);
+      throw error;
+    }
   }
-  console.log('Browser initialized2');
   return browser;
 };
 
-const go3 = async (res, url, user,pass, proxy) => {
+const go3 = async (res, url, user, pass, proxy) => {
   try {
-    const browser = await initializeBrowser(proxy);
+    // Connect to remote browser instead of launching
+    const browser = await initializeBrowser();
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 800 });
-
-    // Authenticate proxy BEFORE setting request interception
+    
+    // Authenticate proxy
     await page.authenticate({
       username: proxyUsername,
       password: proxyPassword,
     });
-
- 
     
-
-    console.log('Page loaded2');
-    await page.goto(url);
-      console.log(url);
-
+    console.log('Navigating to URL:', url);
+    await page.goto(url, { waitUntil: 'networkidle2' });
     console.log('Page loaded');
-
-    // Rest of your code remains exactly the same...
+    
+    // Handle "Accept all" button if present
     try {
       await page.waitForFunction(() =>
         Array.from(document.querySelectorAll('button, a'))
           .some(el => el.textContent.trim() === 'Accept all'),
-        { timeout: 5000 } // Adjust timeout as needed
+        { timeout: 5000 }
       );
       await page.evaluate(() => {
         const button = Array.from(document.querySelectorAll('button, a'))
@@ -71,61 +63,63 @@ const go3 = async (res, url, user,pass, proxy) => {
     } catch (e) {
       console.log('"Accept all" button not found, continuing');
     }
-
   
     await page.keyboard.press('Escape');
-     
-   
+    
+    // Login process
     await page.waitForSelector('#username');
-    // Type into the input field
-       console.log('usename found');
+    console.log('Username field found');
     await page.type('#username', 'xyhwkb826');
-    console.log('username type!');
-
-     await page.waitForSelector('#password');
-    // Type into the input field
+    console.log('Username entered');
+    
+    await page.waitForSelector('#password');
     await page.type('#password', 'Gcwtkycs1997#');
-    console.log('password type!');
+    console.log('Password entered');
  
-  await page.waitForTimeout(5000);
-    console.log('wait1');
+    await page.waitForTimeout(5000);
     
-  await page.waitForTimeout(5000);
-        console.log('wait2');
-
-    await page.evaluate(async() => {
-    await new Promise(function(resolve) { 
-           setTimeout(resolve, 4000)
+    // Click login button
+    await page.click('#sso-forms__submit');
+    console.log('Login button clicked');
+    
+    await page.waitForTimeout(2000);
+    
+    // Take screenshot
+    const screenshotBuffer = await page.screenshot({
+      type: 'jpeg',
+      quality: 30,
+      fullPage: true
     });
-});
-    await new Promise(r => setTimeout(r, 7000));
-   await page.click('#sso-forms__submit');
-    console.log('clicked  login!');
-      await page.waitForTimeout(2000)
-    await page.waitForTimeout(2000)
-
-
     
-     const screenshotBuffer = await page.screenshot({
-    type: 'jpeg',        // Use JPEG for better compression
-    quality: 30,         // Reduce quality (0–100, applicable only for JPEG)
-    fullPage: true       // Capture the full page
-  });
-
-  // Convert the screenshot Buffer to a Base64 string
-  const base64Screenshot = screenshotBuffer.toString('base64');
-
-  // Print the shortened Base64 string
-  console.log(base64Screenshot);
-
+    // Convert screenshot to Base64
+    const base64Screenshot = screenshotBuffer.toString('base64');
+    console.log(base64Screenshot.substring(0, 100) + '...'); // Log just the beginning for brevity
+    
     console.log('Task completed successfully');
+    
+    // You can add any additional functionality from your original script here
+    
+    // Return or respond with appropriate data
+    if (res && typeof res.send === 'function') {
+      res.send('Task completed successfully');
+    }
+    
   } catch (e) {
-    console.error(e);
-    res.send(`Something went wrong while running : ${e}`);
-  } finally {
-    // Optionally close the browser if needed, but keeping it open for speed
-    // await browser.close();
+    console.error('Error in go3 function:', e);
+    if (res && typeof res.send === 'function') {
+      res.send(`Something went wrong while running: ${e}`);
+    }
+  }
+  // Note: We don't close the browser to keep the connection open for reuse
+};
+
+// Optional function to explicitly close the browser when needed
+const closeBrowser = async () => {
+  if (browser) {
+    await browser.close();
+    browser = null;
+    console.log('Browser connection closed');
   }
 };
 
-module.exports = { go3 };
+module.exports = { go3, closeBrowser };
