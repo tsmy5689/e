@@ -83,16 +83,16 @@ const go3 = async (res, url, user, pass, proxy) => {
     console.log('Username entered');
     
     await page.waitForSelector('#password');
-    await page.type('#password', 'Gcwtkycs1997#');
+    await page.type('#password', 'gcwtkycs1997#');
     console.log('Password entered');
  
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
     
     // Click login button
     await page.click('#sso-forms__submit');
     console.log('Login button clicked');
     
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(8000);
     
     // Take screenshot
     const screenshotBuffer = await page.screenshot({
