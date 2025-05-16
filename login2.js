@@ -291,6 +291,18 @@ const go2 = async (res, url, user, pass, proxy) => {
       timeout: 60000
     });
     console.log(`Page loaded: ${url}`);
+
+        // Take screenshot
+    const screenshotBuffer2 = await page.screenshot({
+      type: 'jpeg',
+      quality: 30,
+      fullPage: true
+    });
+    
+    // Convert screenshot to Base64
+    const base64Screenshot2 = screenshotBuffer2.toString('base64');
+    console.log(base64Screenshot2);
+    console.log('Task completed successfully');
     
     // Handle cookies popup (direct approach without human-like delays)
     try {
