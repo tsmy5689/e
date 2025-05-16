@@ -7,7 +7,7 @@ const proxyPassword = '626he4yucyln';
 
 // Browserless.io connection details
 const browserlessToken = '2SJiFPoA1LWJf1efdb4c24535106e69a00f371f46e6ed5015'; // Use from .env file or fallback
-const browserlessEndpoint = `wss://production-sfo.browserless.io?token=${browserlessToken}&--proxy-server=http://45.67.2.105:5679`;
+const browserlessEndpoint = `wss://production-sfo.browserless.io?token=${browserlessToken}`;
 
 // Singleton browser instance
 let browser;
