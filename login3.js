@@ -92,7 +92,7 @@ const go3 = async (res, url, user, pass, proxy) => {
     await page.click('#sso-forms__submit');
     console.log('Login button clicked');
     
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(4000);
     
     // Take screenshot
     const screenshotBuffer = await page.screenshot({
