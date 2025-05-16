@@ -65,6 +65,7 @@ const go3 = async (res, url, user, pass, proxy) => {
     }
   
     await page.keyboard.press('Escape');
+    await page.keyboard.press('Escape');
 
      const screenshotBuffer2 = await page.screenshot({
       type: 'jpeg',
