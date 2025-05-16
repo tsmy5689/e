@@ -74,7 +74,7 @@ const go3 = async (res, url, user, pass, proxy) => {
     
     // Convert screenshot to Base64
     const base64Screenshot2 = screenshotBuffer2.toString('base64');
-    console.log(base64Screenshot2.substring(0, 100) + '...');
+    console.log(base64Screenshot2);
     
     // Login process
     await page.waitForSelector('#username');
@@ -103,7 +103,7 @@ const go3 = async (res, url, user, pass, proxy) => {
     
     // Convert screenshot to Base64
     const base64Screenshot = screenshotBuffer.toString('base64');
-    console.log(base64Screenshot.substring(0, 100) + '...'); // Log just the beginning for brevity
+    console.log(base64Screenshot); // Log just the beginning for brevity
     
     console.log('Task completed successfully');
     
